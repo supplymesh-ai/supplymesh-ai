@@ -411,7 +411,7 @@ function LogoBlock() {
   return (
     <a href="#top" className="flex items-center gap-3">
       <img
-        src="/logo.jpeg"
+        src="/logo.png"
         alt="SupplyMesh-AI logo"
         className="h-12 w-auto object-contain"
       />
