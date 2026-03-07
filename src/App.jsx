@@ -730,7 +730,7 @@ export default function App() {
 
               <div className="mt-6 flex flex-col items-center text-center">
                 <img
-                  src="/founder.jpg"
+                  src="/founder.png"
                   alt="Mrigank Jaiswal"
                   className="h-40 w-40 rounded-full border border-white/10 object-cover"
                 />
