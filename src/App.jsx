@@ -411,7 +411,7 @@ function LogoBlock() {
   return (
     <a href="#top" className="flex items-center gap-3">
       <img
-        src="/logo.png"
+        src={`${import.meta.env.BASE_URL}logo.png`}
         alt="SupplyMesh-AI logo"
         className="h-12 w-auto object-contain"
       />
@@ -729,12 +729,12 @@ export default function App() {
               <h3 className="text-xl font-semibold text-white">Founder</h3>
 
               <div className="mt-6 flex flex-col items-center text-center">
+            
                 <img
-                  src="/founder.png"
+                  src={`${import.meta.env.BASE_URL}founder.png`}
                   alt="Mrigank Jaiswal"
                   className="h-40 w-40 rounded-full border border-white/10 object-cover"
                 />
-
                 <h4 className="mt-4 text-xl font-semibold text-white">
                   Mrigank Jaiswal
                 </h4>
