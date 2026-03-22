@@ -118,7 +118,7 @@ export default function Home() {
               transition={{ delay: 0.05 }}
               className="mt-5 text-5xl font-semibold tracking-tight text-white md:text-6xl lg:text-7xl"
             >
-              Intelligent systems for trusted movement, delivery, and coordination.
+              The intelligence layer powering <span className="text-brandCyan">trusted logistics</span>, <span className="text-brandGreen">public delivery</span>, and <span className="text-emerald-300">future mobility</span>.
             </motion.h1>
 
             <motion.p
