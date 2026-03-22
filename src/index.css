@@ -21,3 +21,19 @@ body {
 ::selection {
   background: rgba(45, 168, 216, 0.3);
 }
+.marquee {
+  animation: marquee 28s linear infinite;
+}
+
+.marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

@@ -9,6 +9,7 @@ const links = [
   { label: "Pricing", to: "/pricing" },
   { label: "Blog", to: "/blog" },
   { label: "About", to: "/about" },
+  { label: "Careers", to: "/careers" },
   { label: "FAQ", to: "/faq" },
   { label: "Contact", to: "/contact" }
 ];
@@ -21,7 +22,7 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
         <Link to="/" className="flex items-center gap-3">
           <img
-            src={`${import.meta.env.BASE_URL}logo.png`}
+            src={`${import.meta.env.BASE_URL}logo-transparent.png`}
             alt="SupplyMesh-AI"
             className="h-12 w-auto object-contain"
           />
@@ -41,7 +42,9 @@ export default function Navbar() {
               key={link.to}
               to={link.to}
               className={({ isActive }) =>
-                isActive ? "text-white" : "transition hover:text-white"
+                isActive
+                  ? "text-white font-medium"
+                  : "transition hover:text-white"
               }
             >
               {link.label}
@@ -49,11 +52,21 @@ export default function Navbar() {
           ))}
         </nav>
 
+        <div className="hidden md:block">
+          <Link
+            to="/contact"
+            className="rounded-2xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
+          >
+            Book a conversation
+          </Link>
+        </div>
+
         <button
           onClick={() => setOpen(!open)}
           className="rounded-2xl border border-white/10 p-2 md:hidden"
+          aria-label="Toggle navigation"
         >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {open ? <X className="h-5 w-5 text-white" /> : <Menu className="h-5 w-5 text-white" />}
         </button>
       </div>
 
@@ -61,10 +74,25 @@ export default function Navbar() {
         <div className="border-t border-white/10 bg-slate-950/95 px-5 py-4 md:hidden">
           <div className="flex flex-col gap-4 text-slate-300">
             {links.map((link) => (
-              <NavLink key={link.to} to={link.to} onClick={() => setOpen(false)}>
+              <NavLink
+                key={link.to}
+                to={link.to}
+                onClick={() => setOpen(false)}
+                className={({ isActive }) =>
+                  isActive ? "text-white font-medium" : "hover:text-white"
+                }
+              >
                 {link.label}
               </NavLink>
             ))}
+
+            <Link
+              to="/contact"
+              onClick={() => setOpen(false)}
+              className="mt-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-center text-sm font-medium text-white transition hover:bg-white/10"
+            >
+              Book a conversation
+            </Link>
           </div>
         </div>
       )}
