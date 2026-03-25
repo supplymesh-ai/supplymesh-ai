@@ -438,7 +438,7 @@ export default function Home() {
       <section className="mx-auto max-w-7xl px-5 pb-20 pt-4 lg:px-8">
         <div className="rounded-[36px] border border-white/10 bg-gradient-to-r from-brandGreen/10 via-brandCyan/10 to-brandBlue/10 p-8 text-center md:p-12">
           <h3 className="text-3xl font-semibold text-white md:text-4xl">
-            Building systems for India 2027 and beyond
+            Building systems for India 2047 and beyond
           </h3>
           <p className="mx-auto mt-4 max-w-3xl text-lg text-slate-300">
             SupplyMesh-AI is being shaped as a long-term digital infrastructure
