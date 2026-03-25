@@ -12,7 +12,11 @@ import {
   Zap,
   Layers3,
   Sparkles,
-  Orbit
+  Orbit,
+  Workflow,
+  Truck,
+  Landmark,
+  BrainCircuit
 } from "lucide-react";
 import SectionTitle from "../components/SectionTitle";
 import FeedbackCard from "../components/FeedbackCard";
@@ -21,13 +25,13 @@ import DashboardPreview from "../components/DashboardPreview";
 const coreCards = [
   {
     title: "See everything",
-    text: "Track critical events, nodes, and movement across distributed operations.",
+    text: "Track movement, nodes, delivery points, and operational events across distributed systems.",
     icon: Boxes,
     color: "from-brandGreen/20 to-emerald-500/10"
   },
   {
     title: "Predict early",
-    text: "Use AI to detect delays, anomalies, and operational risks before they escalate.",
+    text: "Use AI to detect delays, anomalies, and disruption signals before they impact outcomes.",
     icon: Cpu,
     color: "from-brandCyan/20 to-sky-500/10"
   },
@@ -39,51 +43,51 @@ const coreCards = [
   }
 ];
 
-const applications = [
+const platformAreas = [
   {
     title: "Industrial logistics",
-    text: "Smarter visibility and coordination for manufacturing and enterprise supply chains.",
-    icon: Building2
+    text: "Visibility and coordination for manufacturers, operators, and enterprise supply flows.",
+    icon: Truck
   },
   {
     title: "Government delivery",
     text: "Support last-mile public systems, welfare operations, and trusted field execution.",
-    icon: Layers3
+    icon: Landmark
   },
   {
     title: "Cross-border trade",
-    text: "Trusted infrastructure for verifiable digital trade and supply records.",
+    text: "Create trusted digital records and interoperable infrastructure for global supply chains.",
     icon: Globe2
   },
   {
     title: "Future mobility",
-    text: "AeroCorridor-6G extends the platform into drone delivery and aerial coordination.",
+    text: "Extend the platform into drone delivery and cooperative aerial systems with AeroCorridor-6G.",
     icon: Radar
   }
 ];
 
 const visualBlocks = [
   {
-    title: "Intelligent visibility",
-    desc: "Monitor movement, nodes, and operational states through a more unified system view.",
-    icon: Boxes,
+    title: "Intelligence layer",
+    desc: "A unified operating layer for visibility, prediction, and verification.",
+    icon: BrainCircuit,
     color: "from-brandGreen/20 to-emerald-500/10"
   },
   {
-    title: "AI-driven decision support",
-    desc: "Predict delays, detect anomalies, and raise early warning signals before disruption escalates.",
-    icon: Cpu,
+    title: "Workflow orchestration",
+    desc: "Turn fragmented supply operations into cleaner and more coordinated digital workflows.",
+    icon: Workflow,
     color: "from-brandCyan/20 to-sky-500/10"
   },
   {
-    title: "Trusted operations",
-    desc: "Build verifiable event records and confidence-driven workflows across stakeholders.",
+    title: "Trust-first systems",
+    desc: "Build transparency, confidence, and accountability into real-world operations.",
     icon: ShieldCheck,
     color: "from-purple-500/20 to-brandBlue/10"
   },
   {
-    title: "Future-ready systems",
-    desc: "Extend from ground logistics to public delivery and future mobility ecosystems.",
+    title: "Scalable infrastructure",
+    desc: "Designed to evolve from startup product into deployment-ready infrastructure.",
     icon: Orbit,
     color: "from-orange-500/20 to-yellow-500/10"
   }
@@ -91,17 +95,54 @@ const visualBlocks = [
 
 const missionTiles = [
   "IndiaAI Mission aligned innovation",
-  "Make in India focused product direction",
-  "Viksit Bharat 2047 long-term relevance",
+  "Make in India product direction",
+  "Viksit Bharat 2047 relevance",
   "Digital infrastructure thinking for India 2027 and beyond"
 ];
+
+const statTiles = [
+  { value: "12+", label: "product modules" },
+  { value: "4", label: "major application tracks" },
+  { value: "AI + IoT", label: "core technology stack" },
+  { value: "Gov + Enterprise", label: "deployment relevance" }
+];
+
+function GlowCard({ icon: Icon, title, text, color }) {
+  return (
+    <motion.div
+      whileHover={{ y: -6, scale: 1.01 }}
+      className={`rounded-3xl border border-white/10 bg-gradient-to-br ${color} p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.03)]`}
+    >
+      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-white">
+        <Icon className="h-6 w-6" />
+      </div>
+      <h3 className="mt-4 text-2xl font-semibold text-white">{title}</h3>
+      <p className="mt-3 text-slate-200">{text}</p>
+    </motion.div>
+  );
+}
+
+function MiniStat({ value, label }) {
+  return (
+    <motion.div
+      whileHover={{ y: -4 }}
+      className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center"
+    >
+      <div className="text-2xl font-bold text-white">{value}</div>
+      <div className="mt-1 text-sm text-slate-400">{label}</div>
+    </motion.div>
+  );
+}
 
 export default function Home() {
   return (
     <main>
       {/* HERO */}
-      <section className="mx-auto max-w-7xl px-5 pb-12 pt-16 lg:px-8 lg:pb-20 lg:pt-24">
-        <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
+      <section className="relative mx-auto max-w-7xl overflow-hidden px-5 pb-14 pt-16 lg:px-8 lg:pb-20 lg:pt-24">
+        <div className="absolute left-0 top-10 h-40 w-40 rounded-full bg-brandGreen/10 blur-3xl" />
+        <div className="absolute right-0 top-20 h-48 w-48 rounded-full bg-brandCyan/10 blur-3xl" />
+
+        <div className="grid items-center gap-14 lg:grid-cols-[1.02fr_0.98fr]">
           <div>
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -116,9 +157,21 @@ export default function Home() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.05 }}
-              className="mt-5 text-5xl font-semibold tracking-tight text-white md:text-6xl lg:text-7xl"
+              className="mt-6 text-5xl font-semibold leading-tight tracking-tight text-white md:text-6xl lg:text-7xl"
             >
-              The intelligence layer powering <span className="text-brandCyan">trusted logistics</span>, <span className="text-brandGreen">public delivery</span>, and <span className="text-emerald-300">future mobility</span>.
+              The intelligence layer powering{" "}
+              <span className="bg-gradient-to-r from-cyan-300 to-sky-400 bg-clip-text text-transparent">
+                trusted logistics
+              </span>
+              ,{" "}
+              <span className="bg-gradient-to-r from-green-300 to-emerald-400 bg-clip-text text-transparent">
+                public delivery
+              </span>
+              , and{" "}
+              <span className="bg-gradient-to-r from-emerald-300 to-lime-300 bg-clip-text text-transparent">
+                future mobility
+              </span>
+              .
             </motion.h1>
 
             <motion.p
@@ -127,9 +180,9 @@ export default function Home() {
               transition={{ delay: 0.1 }}
               className="mt-6 max-w-2xl text-lg leading-8 text-slate-300"
             >
-              SupplyMesh-AI builds visibility, prediction, and trust layers for
-              logistics, public systems, industrial operations, and future mobility
-              networks.
+              SupplyMesh-AI builds intelligent systems for visibility,
+              prediction, verification, and coordination across logistics,
+              governance, trade, and next-generation mobility networks.
             </motion.p>
 
             <motion.div
@@ -153,16 +206,10 @@ export default function Home() {
               </Link>
             </motion.div>
 
-            <div className="mt-8 flex flex-wrap gap-3 text-sm text-slate-400">
-              <span className="rounded-full border border-white/10 px-3 py-1">
-                Deep-tech startup
-              </span>
-              <span className="rounded-full border border-white/10 px-3 py-1">
-                Government + enterprise relevance
-              </span>
-              <span className="rounded-full border border-white/10 px-3 py-1">
-                Built for India’s digital future
-              </span>
+            <div className="mt-8 grid max-w-2xl gap-3 sm:grid-cols-2 xl:grid-cols-4">
+              {statTiles.map((item) => (
+                <MiniStat key={item.label} value={item.value} label={item.label} />
+              ))}
             </div>
           </div>
 
@@ -170,10 +217,61 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CORE VALUE CARDS */}
-      <section className="mx-auto max-w-7xl px-5 py-16 lg:px-8">
+      {/* CORE CARDS */}
+      <section className="mx-auto max-w-7xl px-5 py-10 lg:px-8">
         <div className="grid gap-5 md:grid-cols-3">
-          {coreCards.map((item, i) => {
+          {coreCards.map((item, i) => (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.05 }}
+            >
+              <GlowCard
+                icon={item.icon}
+                title={item.title}
+                text={item.text}
+                color={item.color}
+              />
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* TRUST BAR */}
+      <section className="mx-auto max-w-7xl px-5 py-8 lg:px-8">
+        <div className="grid gap-4 rounded-[32px] border border-white/10 bg-white/5 p-6 md:grid-cols-3">
+          <div className="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+            <div className="text-sm text-brandGreen">Visibility</div>
+            <div className="mt-2 text-lg font-semibold text-white">
+              Real-world operational awareness
+            </div>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+            <div className="text-sm text-brandCyan">Prediction</div>
+            <div className="mt-2 text-lg font-semibold text-white">
+              AI signals for earlier intervention
+            </div>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-slate-950/40 p-4">
+            <div className="text-sm text-yellow-300">Trust</div>
+            <div className="mt-2 text-lg font-semibold text-white">
+              Verification-first infrastructure thinking
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* WHERE IT APPLIES */}
+      <section className="mx-auto max-w-7xl px-5 py-16 lg:px-8">
+        <SectionTitle
+          eyebrow="Where it applies"
+          title="Built for systems where movement, accountability, and intelligence matter"
+          subtitle="One platform direction, multiple real-world deployment contexts."
+        />
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          {platformAreas.map((item, i) => {
             const Icon = item.icon;
             return (
               <motion.div
@@ -183,42 +281,11 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className={`rounded-3xl border border-white/10 bg-gradient-to-br ${item.color} p-6`}
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-white">
-                  <Icon className="h-6 w-6" />
-                </div>
-                <h3 className="mt-4 text-2xl font-semibold text-white">
-                  {item.title}
-                </h3>
-                <p className="mt-3 text-slate-200">{item.text}</p>
-              </motion.div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* APPLICATION AREAS */}
-      <section className="mx-auto max-w-7xl px-5 py-16 lg:px-8">
-        <SectionTitle
-          eyebrow="Where it applies"
-          title="One platform, multiple future-facing directions"
-          subtitle="Designed for industrial operations today and broader trust infrastructure tomorrow."
-        />
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {applications.map((item, i) => {
-            const Icon = item.icon;
-            return (
-              <motion.div
-                key={item.title}
-                whileHover={{ y: -5 }}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.04 }}
                 className="rounded-3xl border border-white/10 bg-white/5 p-6"
               >
-                <Icon className="h-7 w-7 text-brandGreen" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brandGreen/20 to-brandCyan/20 text-white">
+                  <Icon className="h-6 w-6" />
+                </div>
                 <h3 className="mt-4 text-xl font-semibold text-white">
                   {item.title}
                 </h3>
@@ -229,40 +296,67 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PRETTY VISUAL REPLACEMENT */}
+      {/* VISUAL PLATFORM VALUE */}
       <section className="mx-auto max-w-7xl px-5 py-16 lg:px-8">
         <SectionTitle
-          eyebrow="Visual platform value"
-          title="Built to feel modern, modular, and future-ready"
-          subtitle="A cleaner way to understand what the platform enables."
+          eyebrow="Platform value"
+          title="Designed to look modern, operate intelligently, and scale with ambition"
+          subtitle="A cleaner visual expression of what SupplyMesh-AI is building."
         />
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {visualBlocks.map((item, i) => {
-            const Icon = item.icon;
-            return (
-              <motion.div
-                key={item.title}
-                whileHover={{ y: -6, scale: 1.01 }}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className={`rounded-3xl border border-white/10 bg-gradient-to-br ${item.color} p-6`}
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-white">
-                  <Icon className="h-6 w-6" />
-                </div>
-                <h3 className="mt-4 text-2xl font-semibold text-white">
-                  {item.title}
-                </h3>
-                <p className="mt-3 text-slate-200">{item.desc}</p>
-              </motion.div>
-            );
-          })}
+          {visualBlocks.map((item, i) => (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.05 }}
+            >
+              <GlowCard
+                icon={item.icon}
+                title={item.title}
+                text={item.desc}
+                color={item.color}
+              />
+            </motion.div>
+          ))}
         </div>
       </section>
 
-      {/* MINI VISUAL STRIP */}
+      {/* MISSION STRIP */}
+      <section className="mx-auto max-w-7xl px-5 py-10 lg:px-8">
+        <div className="rounded-[36px] border border-white/10 bg-gradient-to-r from-brandGreen/10 via-brandCyan/10 to-brandBlue/10 p-8">
+          <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-slate-300">
+                <Sparkles className="h-4 w-4 text-brandGreen" />
+                National relevance
+              </div>
+              <h3 className="mt-4 text-3xl font-semibold text-white">
+                Built with India’s next digital decade in mind
+              </h3>
+              <p className="mt-4 text-slate-300">
+                SupplyMesh-AI is aligned with AI-led infrastructure thinking,
+                public-good innovation, and the need for trusted, intelligent
+                systems across logistics and operations.
+              </p>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              {missionTiles.map((item) => (
+                <div
+                  key={item}
+                  className="rounded-2xl border border-white/10 bg-white/5 p-4 text-slate-200"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FEATURE STRIP */}
       <section className="mx-auto max-w-7xl px-5 py-16 lg:px-8">
         <div className="grid gap-6 lg:grid-cols-3">
           <motion.div
@@ -274,8 +368,8 @@ export default function Home() {
               Cleaner workflows
             </h3>
             <p className="mt-3 text-slate-300">
-              Fewer silos, more signal. Turn fragmented operations into clearer
-              digital workflows.
+              Move from fragmented operations toward clearer, smarter, and more
+              coordinated execution.
             </p>
           </motion.div>
 
@@ -289,7 +383,7 @@ export default function Home() {
             </h3>
             <p className="mt-3 text-slate-300">
               Detect what matters earlier with AI-supported monitoring and
-              trust-aware alerts.
+              trust-aware alerting.
             </p>
           </motion.div>
 
@@ -303,34 +397,9 @@ export default function Home() {
             </h3>
             <p className="mt-3 text-slate-300">
               Designed to evolve from startup software into infrastructure-grade
-              systems.
+              systems with broader relevance.
             </p>
           </motion.div>
-        </div>
-      </section>
-
-      {/* NATIONAL RELEVANCE */}
-      <section className="mx-auto max-w-7xl px-5 py-16 lg:px-8">
-        <SectionTitle
-          eyebrow="National relevance"
-          title="Built with India’s next digital decade in mind"
-          subtitle="More than a product — a long-term infrastructure direction."
-          center
-        />
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {missionTiles.map((item, i) => (
-            <motion.div
-              key={item}
-              whileHover={{ y: -5 }}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-              className="rounded-3xl border border-white/10 bg-white/5 p-6 text-center"
-            >
-              <div className="text-slate-300">{item}</div>
-            </motion.div>
-          ))}
         </div>
       </section>
 
@@ -339,7 +408,7 @@ export default function Home() {
         <SectionTitle
           eyebrow="Feedback"
           title="What early supporters say"
-          subtitle="Signals of credibility from mentors, reviewers, and ecosystem stakeholders."
+          subtitle="Signals of credibility from ecosystem stakeholders, mentors, and reviewers."
         />
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           <FeedbackCard
@@ -350,7 +419,7 @@ export default function Home() {
           <FeedbackCard
             name="Innovation Reviewer"
             role="Startup Ecosystem"
-            text="The product direction feels ambitious but practical, especially in how it spans logistics, government, and future systems."
+            text="The platform direction feels ambitious but practical, especially in how it spans logistics, government, and future systems."
           />
           <FeedbackCard
             name="Academic Perspective"
@@ -365,18 +434,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FINAL CTA */}
-      <section className="mx-auto max-w-7xl px-5 pb-16 pt-4 lg:px-8 lg:pb-24">
-        <div className="rounded-[32px] border border-white/10 bg-gradient-to-r from-brandGreen/10 via-brandCyan/10 to-brandBlue/10 p-8 text-center">
-          <Zap className="mx-auto h-10 w-10 text-brandGreen" />
-          <h3 className="mt-4 text-3xl font-semibold text-white">
-            Building systems for India 2047 and beyond
+      {/* CTA */}
+      <section className="mx-auto max-w-7xl px-5 pb-20 pt-4 lg:px-8">
+        <div className="rounded-[36px] border border-white/10 bg-gradient-to-r from-brandGreen/10 via-brandCyan/10 to-brandBlue/10 p-8 text-center md:p-12">
+          <h3 className="text-3xl font-semibold text-white md:text-4xl">
+            Building systems for India 2027 and beyond
           </h3>
           <p className="mx-auto mt-4 max-w-3xl text-lg text-slate-300">
             SupplyMesh-AI is being shaped as a long-term digital infrastructure
-            company — connecting visibility, AI, trust, and coordination across
+            company connecting visibility, AI, trust, and coordination across
             industrial, public, and future mobility ecosystems.
           </p>
+
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <Link
               to="/about"
@@ -385,10 +454,10 @@ export default function Home() {
               Learn more
             </Link>
             <Link
-              to="/blog"
-              className="rounded-2xl border border-white/10 bg-white/5 px-5 py-3 font-medium text-white hover:bg-white/10"
+              to="/contact"
+              className="rounded-2xl border border-white/10 bg-white/5 px-5 py-3 font-medium text-white transition hover:bg-white/10"
             >
-              Read our blog
+              Contact us
             </Link>
           </div>
         </div>
