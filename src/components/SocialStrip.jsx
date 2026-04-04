@@ -23,12 +23,12 @@ export default function SocialStrip() {
     },
     {
       label: "Facebook",
-      href: "https://facebook.com/",
+      href: "https://www.facebook.com/profile.php?id=61578407800290",
       icon: Facebook
     },
     {
       label: "Instagram",
-      href: "https://instagram.com/",
+      href: "https://www.instagram.com/supplymesh.ai/",
       icon: Instagram
     },
     {
